@@ -1,0 +1,70 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Mux16.hdl
+
+/**
+ * 16-bit multiplexor: 
+ * for i = 0..15 out[i] = a[i] if sel == 0 
+ *                        b[i] if sel == 1
+ */
+
+CHIP Mux16 {
+    IN a[16], b[16], sel;
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+    Not(in=sel, out=selbar);
+    //...
+    And(a=selbar, b=a[0], out=temp10);
+    And(a=selbar, b=a[1], out=temp11);
+    And(a=selbar, b=a[2], out=temp12);
+    And(a=selbar, b=a[3], out=temp13);
+    And(a=selbar, b=a[4], out=temp14);
+    And(a=selbar, b=a[5], out=temp15);
+    And(a=selbar, b=a[6], out=temp16);
+    And(a=selbar, b=a[7], out=temp17);
+    And(a=selbar, b=a[8], out=temp18);
+    And(a=selbar, b=a[9], out=temp19);
+    And(a=selbar, b=a[10], out=temp110);
+    And(a=selbar, b=a[11], out=temp111);
+    And(a=selbar, b=a[12], out=temp112);
+    And(a=selbar, b=a[13], out=temp113);
+    And(a=selbar, b=a[14], out=temp114);
+    And(a=selbar, b=a[15], out=temp115);
+    //...
+    And(a=sel, b=b[0], out=temp20);
+    And(a=sel, b=b[1], out=temp21);
+    And(a=sel, b=b[2], out=temp22);
+    And(a=sel, b=b[3], out=temp23);
+    And(a=sel, b=b[4], out=temp24);
+    And(a=sel, b=b[5], out=temp25);
+    And(a=sel, b=b[6], out=temp26);
+    And(a=sel, b=b[7], out=temp27);
+    And(a=sel, b=b[8], out=temp28);
+    And(a=sel, b=b[9], out=temp29);
+    And(a=sel, b=b[10], out=temp210);
+    And(a=sel, b=b[11], out=temp211);
+    And(a=sel, b=b[12], out=temp212);
+    And(a=sel, b=b[13], out=temp213);
+    And(a=sel, b=b[14], out=temp214);
+    And(a=sel, b=b[15], out=temp215);
+    //...
+    Or(a=temp10, b=temp20, out=out[0]);
+    Or(a=temp11, b=temp21, out=out[1]);
+    Or(a=temp12, b=temp22, out=out[2]);
+    Or(a=temp13, b=temp23, out=out[3]);
+    Or(a=temp14, b=temp24, out=out[4]);
+    Or(a=temp15, b=temp25, out=out[5]);
+    Or(a=temp16, b=temp26, out=out[6]);
+    Or(a=temp17, b=temp27, out=out[7]);
+    Or(a=temp18, b=temp28, out=out[8]);
+    Or(a=temp19, b=temp29, out=out[9]);
+    Or(a=temp110, b=temp210, out=out[10]);
+    Or(a=temp111, b=temp211, out=out[11]);
+    Or(a=temp112, b=temp212, out=out[12]);
+    Or(a=temp113, b=temp213, out=out[13]);
+    Or(a=temp114, b=temp214, out=out[14]);
+    Or(a=temp115, b=temp215, out=out[15]);
+}

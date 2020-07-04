@@ -1,0 +1,154 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Mux4Way16.hdl
+
+/**
+ * 4-way 16-bit multiplexor:
+ * out = a if sel == 00
+ *       b if sel == 01
+ *       c if sel == 10
+ *       d if sel == 11
+ */
+
+CHIP Mux4Way16 {
+    IN a[16], b[16], c[16], d[16], sel[2];
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+    Not(in=sel[0], out=selbar0);
+    Not(in=sel[1], out=selbar1);
+
+
+    And(a=selbar0, b=selbar1, out=aout);
+    And(a=sel[0], b=selbar1, out=bout);
+    And(a=selbar0, b=sel[1], out=cout);
+    And(a=sel[0], b=sel[1], out=dout);
+
+
+    And(a=aout, b=a[0], out=temp10);
+    And(a=aout, b=a[1], out=temp11);
+    And(a=aout, b=a[2], out=temp12);
+    And(a=aout, b=a[3], out=temp13);
+    And(a=aout, b=a[4], out=temp14);
+    And(a=aout, b=a[5], out=temp15);
+    And(a=aout, b=a[6], out=temp16);
+    And(a=aout, b=a[7], out=temp17);
+    And(a=aout, b=a[8], out=temp18);
+    And(a=aout, b=a[9], out=temp19);
+    And(a=aout, b=a[10], out=temp110);
+    And(a=aout, b=a[11], out=temp111);
+    And(a=aout, b=a[12], out=temp112);
+    And(a=aout, b=a[13], out=temp113);
+    And(a=aout, b=a[14], out=temp114);
+    And(a=aout, b=a[15], out=temp115);
+
+
+    And(a=bout, b=b[0], out=temp20);
+    And(a=bout, b=b[1], out=temp21);
+    And(a=bout, b=b[2], out=temp22);
+    And(a=bout, b=b[3], out=temp23);
+    And(a=bout, b=b[4], out=temp24);
+    And(a=bout, b=b[5], out=temp25);
+    And(a=bout, b=b[6], out=temp26);
+    And(a=bout, b=b[7], out=temp27);
+    And(a=bout, b=b[8], out=temp28);
+    And(a=bout, b=b[9], out=temp29);
+    And(a=bout, b=b[10], out=temp210);
+    And(a=bout, b=b[11], out=temp211);
+    And(a=bout, b=b[12], out=temp212);
+    And(a=bout, b=b[13], out=temp213);
+    And(a=bout, b=b[14], out=temp214);
+    And(a=bout, b=b[15], out=temp215);
+
+
+    And(a=cout, b=c[0], out=temp30);
+    And(a=cout, b=c[1], out=temp31);
+    And(a=cout, b=c[2], out=temp32);
+    And(a=cout, b=c[3], out=temp33);
+    And(a=cout, b=c[4], out=temp34);
+    And(a=cout, b=c[5], out=temp35);
+    And(a=cout, b=c[6], out=temp36);
+    And(a=cout, b=c[7], out=temp37);
+    And(a=cout, b=c[8], out=temp38);
+    And(a=cout, b=c[9], out=temp39);
+    And(a=cout, b=c[10], out=temp310);
+    And(a=cout, b=c[11], out=temp311);
+    And(a=cout, b=c[12], out=temp312);
+    And(a=cout, b=c[13], out=temp313);
+    And(a=cout, b=c[14], out=temp314);
+    And(a=cout, b=c[15], out=temp315);
+
+
+    And(a=dout, b=d[0], out=temp40);
+    And(a=dout, b=d[1], out=temp41);
+    And(a=dout, b=d[2], out=temp42);
+    And(a=dout, b=d[3], out=temp43);
+    And(a=dout, b=d[4], out=temp44);
+    And(a=dout, b=d[5], out=temp45);
+    And(a=dout, b=d[6], out=temp46);
+    And(a=dout, b=d[7], out=temp47);
+    And(a=dout, b=d[8], out=temp48);
+    And(a=dout, b=d[9], out=temp49);
+    And(a=dout, b=d[10], out=temp410);
+    And(a=dout, b=d[11], out=temp411);
+    And(a=dout, b=d[12], out=temp412);
+    And(a=dout, b=d[13], out=temp413);
+    And(a=dout, b=d[14], out=temp414);
+    And(a=dout, b=d[15], out=temp415);
+
+
+    Or(a=temp10, b=temp20, out=temp1110);
+    Or(a=temp11, b=temp21, out=temp1111);
+    Or(a=temp12, b=temp22, out=temp1112);
+    Or(a=temp13, b=temp23, out=temp1113);
+    Or(a=temp14, b=temp24, out=temp1114);
+    Or(a=temp15, b=temp25, out=temp1115);
+    Or(a=temp16, b=temp26, out=temp1116);
+    Or(a=temp17, b=temp27, out=temp1117);
+    Or(a=temp18, b=temp28, out=temp1118);
+    Or(a=temp19, b=temp29, out=temp1119);
+    Or(a=temp110, b=temp210, out=temp11110);
+    Or(a=temp111, b=temp211, out=temp11111);
+    Or(a=temp112, b=temp212, out=temp11112);
+    Or(a=temp113, b=temp213, out=temp11113);
+    Or(a=temp114, b=temp214, out=temp11114);
+    Or(a=temp115, b=temp215, out=temp11115);
+
+
+    Or(a=temp1110, b=temp30, out=temp2220);
+    Or(a=temp1111, b=temp31, out=temp2221);
+    Or(a=temp1112, b=temp32, out=temp2222);
+    Or(a=temp1113, b=temp33, out=temp2223);
+    Or(a=temp1114, b=temp34, out=temp2224);
+    Or(a=temp1115, b=temp35, out=temp2225);
+    Or(a=temp1116, b=temp36, out=temp2226);
+    Or(a=temp1117, b=temp37, out=temp2227);
+    Or(a=temp1118, b=temp38, out=temp2228);
+    Or(a=temp1119, b=temp39, out=temp2229);
+    Or(a=temp11110, b=temp310, out=temp22210);
+    Or(a=temp11111, b=temp311, out=temp22211);
+    Or(a=temp11112, b=temp312, out=temp22212);
+    Or(a=temp11113, b=temp313, out=temp22213);
+    Or(a=temp11114, b=temp314, out=temp22214);
+    Or(a=temp11115, b=temp315, out=temp22215);
+
+
+    Or(a=temp2220, b=temp40, out=out[0]);
+    Or(a=temp2221, b=temp41, out=out[1]);
+    Or(a=temp2222, b=temp42, out=out[2]);
+    Or(a=temp2223, b=temp43, out=out[3]);
+    Or(a=temp2224, b=temp44, out=out[4]);
+    Or(a=temp2225, b=temp45, out=out[5]);
+    Or(a=temp2226, b=temp46, out=out[6]);
+    Or(a=temp2227, b=temp47, out=out[7]);
+    Or(a=temp2228, b=temp48, out=out[8]);
+    Or(a=temp2229, b=temp49, out=out[9]);
+    Or(a=temp22210, b=temp410, out=out[10]);
+    Or(a=temp22211, b=temp411, out=out[11]);
+    Or(a=temp22212, b=temp412, out=out[12]);
+    Or(a=temp22213, b=temp413, out=out[13]);
+    Or(a=temp22214, b=temp414, out=out[14]);
+    Or(a=temp22215, b=temp415, out=out[15]);
+}
